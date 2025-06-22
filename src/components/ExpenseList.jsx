@@ -1,11 +1,11 @@
-export default function ExpenseList({ expenses, deleteExpense, editExpense }) {
+export default function ExpenseList(props) {
   return (
     <ul className="expense-list">
-      {expenses.map((expense) => (
+      {props.expenses.map((expense) => (
         <li key={expense.id}>
           <strong>{expense.title}</strong>: ${expense.amount}&nbsp;
-          <button onClick={() => deleteExpense(expense.id)}>Delete</button><br></br>
-          <button onClick={() => editExpense(expense)}>Edit</button>
+          <button onClick={() => props.deleteExpense(expense.id)}>Delete</button><br />
+          <button onClick={() => props.editExpense(expense)}>Edit</button>
         </li>
       ))}
     </ul>

@@ -1,10 +1,9 @@
-// ExpenseSummary.js
-export default function ExpenseSummary({ expenses }) {
-  const income = expenses
+export default function ExpenseSummary(props) {
+  const income = props.expenses
     .filter((e) => e.amount > 0)
     .reduce((acc, curr) => acc + curr.amount, 0);
 
-  const expense = expenses
+  const expense = props.expenses
     .filter((e) => e.amount < 0)
     .reduce((acc, curr) => acc + curr.amount, 0);
 

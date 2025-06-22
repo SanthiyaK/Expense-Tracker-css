@@ -53,11 +53,10 @@ export default function ExpenseTrack() {
 
       <ExpenseForm addExpense={addExpense} itemToEdit={itemToEdit} />
       <ExpenseSummary expenses={expenses} />
-      <ExpenseList
-        expenses={expenses}
-        deleteExpense={deleteExpense}
-        editExpense={setItemToEdit} 
-      />
+      <ExpenseList expenses={expenses} 
+        deleteExpense={deleteExpense} 
+        editExpense={setItemToEdit} />
+
     </div>
   );
 }
