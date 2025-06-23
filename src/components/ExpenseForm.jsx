@@ -1,55 +1,54 @@
 import React, { useState, useEffect } from 'react';
 
-export default function ExpenseForm(props) {
+export default function ExpenseForm({ addExpense, itemToEdit, setItemToEdit }) {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
 
   useEffect(() => {
-    if (props.itemToEdit) {
-      setTitle(props.itemToEdit.title);
-      setAmount(props.itemToEdit.amount.toString());
+    if (itemToEdit) {
+      setTitle(itemToEdit.title);
+      setAmount(itemToEdit.amount.toString());
     } else {
       setTitle('');
       setAmount('');
     }
-  }, [props.itemToEdit]);
+  }, [itemToEdit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !amount) return;
-
-    props.addExpense(title, amount, props.itemToEdit?.id);
+    addExpense(title, amount, itemToEdit?.id);
     setTitle('');
     setAmount('');
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Title</label>&nbsp;
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <br /><br />
-        <label>Amount</label>&nbsp;
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
-        <br /><br />
+    <form onSubmit={handleSubmit} className="expense-form">
+      <label>Title</label>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
+
+      <label>Amount</label>
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        required
+      />
+
+      <div className="button-group">
         <button type="submit">
-          {props.itemToEdit ? "Update Expense" : "Add Expense"}
+          {itemToEdit ? 'Update Expense' : 'Add Expense'}
         </button>
-        {props.itemToEdit && (
+        {itemToEdit && (
           <button
             type="button"
             onClick={() => {
-              props.setItemToEdit(null);
+              setItemToEdit(null);
               setTitle('');
               setAmount('');
             }}
@@ -57,7 +56,7 @@ export default function ExpenseForm(props) {
             Cancel
           </button>
         )}
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
