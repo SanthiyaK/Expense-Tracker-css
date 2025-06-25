@@ -11,14 +11,14 @@ export default function ExpenseTrack() {
   const [itemToEdit, setItemToEdit] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/expenses")
+    axios.get("https://backend-crud-e1um.onrender.com/api/expenses")
       .then((res) => setExpenses(res.data))
       .catch((err) => console.error("Fetch error:", err));
   }, []);
 
   const addExpense = (title, amount, id = null) => {
     if (id) {
-      axios.put(`http://localhost:3000/api/expenses/${id}`, { title, amount: Number(amount) })
+      axios.put(`https://backend-crud-e1um.onrender.com/api/expenses/${id}`, { title, amount: Number(amount) })
         .then((res) => {
           const updatedList = expenses.map((exp) =>
             exp._id === id ? res.data : exp
@@ -28,14 +28,14 @@ export default function ExpenseTrack() {
         })
         .catch((err) => console.error("Update error:", err));
     } else {
-      axios.post("http://localhost:3000/api/expenses", { title, amount: Number(amount) })
+      axios.post("https://backend-crud-e1um.onrender.com/api/expenses", { title, amount: Number(amount) })
         .then((res) => setExpenses([...expenses, res.data]))
         .catch((err) => console.error("Add error:", err));
     }
   };
 
   const deleteExpense = (id) => {
-    axios.delete(`http://localhost:3000/api/expenses/${id}`)
+    axios.delete(`https://backend-crud-e1um.onrender.com/api/expenses/${id}`)
       .then(() => setExpenses(expenses.filter((exp) => exp._id !== id)))
       .catch((err) => console.error("Delete error:", err));
   };
