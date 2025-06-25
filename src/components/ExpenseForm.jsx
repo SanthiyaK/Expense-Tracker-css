@@ -17,7 +17,7 @@ export default function ExpenseForm({ addExpense, itemToEdit, setItemToEdit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !amount) return;
-    addExpense(title, amount, itemToEdit?.id);
+    addExpense(title, amount, itemToEdit?._id);
     setTitle('');
     setAmount('');
   };

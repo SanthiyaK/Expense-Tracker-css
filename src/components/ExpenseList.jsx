@@ -7,7 +7,7 @@ export default function ExpenseList({ expenses, deleteExpense, editExpense }) {
             <strong>{expense.title}</strong>: ${expense.amount}
           </div>
           <div className="expense-actions">
-            <button onClick={() => deleteExpense(expense.id)}>Delete</button>
+            <button onClick={() => deleteExpense(expense._id)}>Delete</button>
             <button onClick={() => editExpense(expense)}>Edit</button>
           </div>
         </li>
